@@ -7,6 +7,7 @@ RUN curl -o /usr/bin/slirp4netns -fsSL https://github.com/rootless-containers/sl
     && chmod +x /usr/bin/slirp4netns
 
 # Install user environment
+RUN groupadd gitpod && adduser -g gitpod gitpod
 CMD /bin/bash -l
 USER gitpod
 ENV USER gitpod
