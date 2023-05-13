@@ -8,6 +8,8 @@ RUN curl -o /usr/bin/slirp4netns -fsSL https://github.com/rootless-containers/sl
 
 RUN useradd -l -u 33333 -G wheel -md /home/gitpod -s /bin/bash -p gitpod gitpod \
     && sed -i.bkp -e 's/%wheel\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%wheel ALL=NOPASSWD:ALL/g' /etc/sudoers
+ENV HOME=/home/gitpod
+WORKDIR $HOME
 
 # essential packages
 RUN dnf install -y dnf-plugins-core git-core openssh-server \
